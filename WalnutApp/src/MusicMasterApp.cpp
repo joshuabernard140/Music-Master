@@ -4,6 +4,10 @@
 #include "Walnut/Image.h"
 #include "Walnut/UI/UI.h"
 
+#include <Python.h>
+#include <iostream>
+#include <cstdlib>
+
 class ExampleLayer : public Walnut::Layer
 {
 public:
@@ -48,6 +52,11 @@ public:
 		m_AboutModalOpen = true;
 	}
 
+	void audioDownload(const std::string& url) {
+		std::string command = "python audioDownload.py " + url;
+		system(command.c_str());
+	}
+
 	void DownloadWindow() {
 		ImGuiWindowFlags window_flags = 0;
 		window_flags |= ImGuiWindowFlags_NoDocking;
@@ -57,9 +66,10 @@ public:
 		ImGui::Text("Enter Youtube Music Link");
 		ImGui::Spacing();
 
-		ImGui::InputText("##YoutubeLink", &inputLink, sizeof(link));
+		ImGui::InputText("##YoutubeLink", inputLink, sizeof(inputLink));
 		if (ImGui::Button("Download")) {
-			link = &inputLink;
+			url = inputLink;
+			audioDownload(url);
 		}
 
 		ImGui::End();
@@ -75,8 +85,8 @@ public:
 
 private:
 	bool m_AboutModalOpen = false;
-	char inputLink;
-	std::string link;
+	char inputLink[256];
+	std::string url;
 };
 
 Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
