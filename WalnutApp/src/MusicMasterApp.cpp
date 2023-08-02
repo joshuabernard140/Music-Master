@@ -7,6 +7,10 @@
 #include <Python.h>
 #include <iostream>
 #include <cstdlib>
+#include <filesystem>
+#include <Windows.h>
+
+namespace fs = std::filesystem;
 
 class ExampleLayer : public Walnut::Layer
 {
@@ -75,11 +79,35 @@ public:
 		ImGui::End();
 	}
 
+	void OpenFileWithNativePlayer(const std::string& filePath) {
+		HINSTANCE result = ShellExecuteA(nullptr, "open", filePath.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+
+		if (reinterpret_cast<int>(result) <= 32) {
+			std::cerr << "Failed to open file: " << filePath << std::endl;
+		}
+	}
+
 	void MusicWindow() {
 		ImGuiWindowFlags window_flags = 0;
 		window_flags |= ImGuiWindowFlags_NoDocking;
 
 		ImGui::Begin("Music Library", nullptr, window_flags);
+
+		fs::path folderPath = "downloads";
+
+		if (fs::exists(folderPath) && fs::is_directory(folderPath)) {
+			for (const auto& entry : fs::directory_iterator(folderPath)) {
+				if (entry.is_regular_file()) {
+					std::string fileName = entry.path().filename().string();
+					if (ImGui::Button((fileName).c_str())) {
+						OpenFileWithNativePlayer(entry.path().string());
+					}
+				}
+			}
+		} else {
+			std::cerr << "Folder not found." << std::endl;
+		}
+
 		ImGui::End();
 	}
 
