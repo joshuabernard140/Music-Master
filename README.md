@@ -1,6 +1,8 @@
 # Music Master
 Music Master is an ImGui project designed to empower you with the ability to effortlessly download and seamlessly integrate MP3 files into a music library. This platform enables you to enjoy your curated collection from any location, whether connected to Wi-Fi or not.
 
+To use, download the "Music Master" folder and run MusicMaster.exe.
+
 ## Requirements
 - [Visual Studio 2022](https://visualstudio.com)
 - [Vulkan SDK](https://vulkan.lunarg.com/sdk/home#windows)
