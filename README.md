@@ -1,6 +1,5 @@
 # Music Master
-
-Music Master is still in production.
+Music Master is an ImGui project designed to empower you with the ability to effortlessly download and seamlessly integrate MP3 files into a music library. This platform enables you to enjoy your curated collection from any location, whether connected to Wi-Fi or not.
 
 ## Requirements
 - [Visual Studio 2022](https://visualstudio.com)
