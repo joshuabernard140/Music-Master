@@ -3,6 +3,8 @@ Music Master is an ImGui project designed to empower you with the ability to eff
 
 To use, download the "Music Master" folder and run MusicMaster.exe.
 
+![Music Master Screenshot](https://github.com/joshuabernard140/Music-Master/raw/main/path/to/screenshot.png)
+
 ## Requirements
 - [Visual Studio 2022](https://visualstudio.com)
 - [Vulkan SDK](https://vulkan.lunarg.com/sdk/home#windows)
